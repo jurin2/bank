@@ -1,0 +1,229 @@
+@charset "utf-8";
+
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+a{
+    text-decoration: none;
+    color: inherit;
+}
+img{
+    width: 100%;
+    vertical-align: top;
+}
+ul,ol,li{
+    list-style: none;
+}
+h1,h2,h3,h4,h5,h6{
+    font-size: inherit;
+    font-weight: 400;
+}
+address,i{
+    font-style: normal;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
+:root{
+    font-family: 'Noto Sans KR', sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    color: #222326;
+    line-height: 1.5;
+}
+.clearfix::after{
+    content: '';
+    display: block;
+    clear: both;
+}
+/* .container{
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+} */
+.wrap{
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+}
+.doc-tit{
+    display: none;
+}
+
+/* header */
+.header,.slider,.footer{
+    grid-column: 1/3;
+}
+.header .container{
+    border-bottom: 1px solid #222326;
+}
+.header .row{
+    display: grid;
+    grid-template-columns: repeat(2,auto);
+    justify-content: space-between;
+    align-items: center;
+
+    height: 100px;
+}
+.header .sec-tit{
+    padding: 0 1em;
+    font-weight: 700;
+    font-size: 2.5em;
+}
+.header .sec-tit span:nth-child(1){
+    color: tomato;
+}
+.header .sec-tit span:nth-child(2){ 
+    color: darkred;
+}
+.nav{
+    align-self: flex-end;
+}
+.nav-level1{
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+}
+.nav-level1>li{
+    border-bottom: 2px solid transparent;
+    padding: 1em;
+    font-weight: 600;
+    font-size: 1.5em;
+    text-align: center;
+    position: relative;
+}
+.nav-level1>li:hover{
+    border-bottom: 2px solid tomato;
+    color: tomato;
+}
+.nav-level2{
+    display: none;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: calc(100% + 2px);
+    height: 150px;
+    padding: 0.5em;
+    background-color: #222326;
+    color: #fff;
+    font-size: 0.6em;
+    font-weight: 400;
+}
+.nav-level2 li{
+    padding: 0.3em;
+}
+.nav-level2 li:hover{
+    padding: 0.3em 0.2em;
+    background-color: tomato;
+    color: #fff;
+    transform: scale(1.3);
+}
+
+
+/* slider */
+.slider .sec-tit{
+    display: none;
+}
+.slider .row{
+    overflow: hidden;
+    position: relative;
+    height: 300px;
+}
+.slider .slide{
+    position: absolute;
+    left: 0;
+    /* top: 50%;
+    transform: translateY(-50%); */
+    width: 100%;
+    transition: 0.5s;
+}
+.slider .slide02{
+    left: 100%;
+}
+.slider .slide03{
+    left: 200%;
+}
+.slide-content{
+    position: absolute;
+    left: 20%;
+    top: 50%;
+    right: 20%;
+    bottom: -100%;
+    transform: translateY(-50%);
+    background-color: rgba(0,0,0,0.5);
+    color: #fff;
+    
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-evenly;
+    padding: 1em 3em;
+}
+.slide-content::after{
+    content: '자세히 보러가기';
+    display: block;
+    color: #fff;
+    text-align: right;
+}
+.slide-content h3{
+    font-weight: 400;
+    font-size: 1em;
+}
+.slide-content p{
+    font-weight: 700;
+    font-size: 2em;
+}
+
+
+/* notice-gallery */
+.notice-gallery .sec-tit{
+    display: none;
+}
+.notice-gallery .row{
+    position: relative;
+    height: 250px;
+    overflow: hidden;
+}
+.notice-gallery .art{
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+}
+.sub-tit{
+    width: 50%;
+    padding: 0.6em;
+    background-color: #eee;
+    text-align: center;
+}
+.sub-tit.on{
+    background-color: tomato;
+    color: #fff;
+    cursor: pointer;
+}
+.notice-list ul{
+    display: grid;
+    grid-template-columns: 7fr 3fr 2fr;
+}
+.notice-list ul{
+    text-align: center;
+    font-weight: 600;
+}
+.notice-list ul.notice-content{
+    font-weight: 400;
+}
+.notice-list ul li:first-child,
+.notice-list ul li:last-child{
+    display: none; 
+}
+.notice-list ul li:nth-child(2){
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+
+.gallery .sub-tit{
+    transform: translateX(100%);
+}
