@@ -227,3 +227,11 @@ address,i{
 .gallery .sub-tit{
     transform: translateX(100%);
 }
+.gallery-list{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 0.5em;
+}
+.gallery-content{
+    display: none;
+}
