@@ -177,6 +177,9 @@ address,i{
 
 
 /* notice-gallery */
+.notice-gallery{
+    padding: 1em;
+}
 .notice-gallery .sec-tit{
     display: none;
 }
@@ -192,10 +195,14 @@ address,i{
     top: 0;
 }
 .sub-tit{
+    position: absolute;
+    left: 0;
+    top: 0;
     width: 50%;
     padding: 0.6em;
     background-color: #eee;
     text-align: center;
+    cursor: pointer;
 }
 .sub-tit.on{
     background-color: tomato;
@@ -228,7 +235,8 @@ address,i{
     transform: translateX(100%);
 }
 .gallery-list{
-    display: grid;
+    /* display: grid; */
+    display: none;
     grid-template-columns: repeat(3,1fr);
     gap: 0.5em;
 }
