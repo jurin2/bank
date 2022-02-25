@@ -8,6 +8,17 @@
     <title>대한은행</title>
 </head>
 <body>
+    <!-- skip-nav -->
+    <div class="skip-nav">
+        <ul>
+            <li><a href="#header">헤더</a></li>
+            <li><a href="#slider">슬라이더</a></li>
+            <li><a href="#notice">공지사항/갤러리</a></li>
+            <li><a href="#banner">배너</a></li>
+            <li><a href="#footer">푸터</a></li>
+        </ul>
+    </div>
+
     <section class="wrap">
         <h1 class="doc-tit">대한은행</h1>
         <header class="header" id="header">
@@ -103,8 +114,8 @@
             <div class="container">
                 <div class="row">
                     <h2 class="sec-tit">공지사항/갤러리</h2>
-                    <article class="art notice">
-                        <h3 class="sub-tit on">공지사항</h3>
+                    <article class="art notice on">
+                        <h3 class="sub-tit">공지사항</h3>
                         <ul class="notice-list">
                             <li>
                                 <ul class="notice-tit">
@@ -215,16 +226,25 @@
         <footer class="footer" id="footer">
             <div class="container">
                 <div class="row">
-                    <h2 class="sec-tit"><a href="./index.html" title="시작페이지로 이동">DHB</a></h2>
+                    <h2 class="logo sec-tit">
+                        <a href="./index.html" title="시작페이지로 이동">
+                            <span>D</span><span>H</span><span>B</span> 
+                        </a>
+                    </h2>
                     <address>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio unde ullam nostrum laborum sint magnam culpa eos mollitia voluptatibus at sed officia dolor, nihil laudantium qui, blanditiis suscipit. Commodi, dicta!
-                        Ipsa repellendus illo perspiciatis enim, consectetur necessitatibus, aliquid repellat ratione iure minus dolores recusandae nobis facere iste? Aspernatur quam saepe nisi veritatis, voluptas rem earum autem ratione quibusdam illo sunt.
+                        Copyright HEO
                     </address>
                     <div class="sns-list">
                         <ul>
-                            <li><a href="#">facebook</a></li>
-                            <li><a href="#">instagram</a></li>
-                            <li><a href="#">twitter</a></li>
+                            <li>
+                                <a href="#">facebook</a>
+                            </li>
+                            <li>
+                                <a href="#">instagram</a>
+                            </li>
+                            <li>
+                                <a href="#">kakao</a>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -232,16 +252,7 @@
         </footer>
     </section>
 
-    <!-- skip-nav -->
-    <div class="skip-nav">
-        <ul>
-            <li><a href="#header">헤더</a></li>
-            <li><a href="#slider">슬라이더</a></li>
-            <li><a href="#notice">공지사항/갤러리</a></li>
-            <li><a href="#banner">배너</a></li>
-            <li><a href="#footer">푸터</a></li>
-        </ul>
-    </div>
+  
 
     <!-- modal-popup -->
     <div class="modal-popup popup01">
@@ -260,9 +271,12 @@
     <div class="modal-popup popup02">
         <div class="container">
             <div class="row">
-                <h2>modal02</h2>
-                <div class="modal-content">
-                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Similique recusandae minus quibusdam possimus quis laborum nam natus sunt quod, delectus sed harum temporibus ex eius consectetur. Quos, sequi. Magni, deleniti.
+                <h2 class="modal-tit">그림제목</h2>
+                <div class="modal-img">
+                    <img src="./images/gallery01.jpg" alt="그림설명">
+                </div>
+                <div class="modal-con">
+                    그림설명
                 </div>
                 <div class="modal-btn">
                     <button type="button">닫기</button>
@@ -270,55 +284,103 @@
             </div>
         </div>
     </div>
-    <div class="modal-popup popup03">
-        <div class="container">
-            <div class="row">
-                <h2>modal03</h2>
-                <div class="modal-content">
-                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Similique recusandae minus quibusdam possimus quis laborum nam natus sunt quod, delectus sed harum temporibus ex eius consectetur. Quos, sequi. Magni, deleniti.
-                </div>
-                <div class="modal-btn">
-                    <button type="button">닫기</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
+   
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="./js/myjs.js"></script>
 
     <script>
-        $('.nav-level1>li').mouseenter(function(){
-            $(this).children('.nav-level2').slideDown(300);
+        // 스킵메뉴
+        $('.skip-nav a').on({
+            focusin:function(){
+                $('.skip-nav').css('top','0');
+            },
+            focusout:function(){
+                $('.skip-nav').css('top','-9999px');
+            }
         })
-        $('.nav-level2,.nav-level1>li').mouseleave(function(){
-            $('.nav-level2').slideUp(300);
+
+        // 모달팝업 공지사항
+        $('.modal-btn button').on({
+            click:function(){
+                $('.modal-popup').hide(0);
+            }
         })
 
-        let slideEls = $('.slide');
-        let nowSlide = 1;
+        let conTits = $('.notice-content li:nth-child(2) a');
+        conTits.on({
+            click:function(e){
+                $('.popup01').show(0);
+                e.preventDefault(); //return false랑 비슷
+            }
+        })
 
-        setInterval(function(){
-            changeSlide();
-        },3000);
+        // 모달팝업 갤러리
+        $('.gallery-list img').on({
+            click:function(){
+                let imgsrc = $(this).attr('src');
+                let imgTit = $(this).parents('.img-box').next().children('.cont-tit').text();
+                let imgCon = $(this).parents('.img-box').next().children('p').text();
+                // console.log(imgsrc,imgTit,imgCon);
+                $('.popup02 .modal-tit').text(imgTit);
+                $('.popup02 img').attr('src',imgsrc);
+                $('.popup02 .modal-con').text(imgCon);
+                $('.popup02').show(0);
 
-        function changeSlide(){
-            if(nowSlide>=3){
-                nowSlide=1;
-                for(let idx=0; idx<slideEls.length; idx++){
-                    let leftVal = slideEls.eq(idx).position().left;
-                    slideEls.eq(idx).css('left',leftVal+=2400);
-                }
+            }
+        })
+
+        $('.notice-gallery a').on({
+            click:function(e){
+                e.preventDefault();
+            }
+        })
+
+
+        // 해당 메인메뉴의 서브메뉴만 슬라이드 
+        $('.nav-level1').mouseenter(function(){
+            $('.nav-level2').stop().slideDown(300);
+        })
+        $('.nav-level1').mouseleave(function(){
+            $('.nav-level2').stop().slideUp(300);
+        })
+
+
+        // 좌우 슬라이드
+        setInterval(mySlider,3000);
+
+        let cnt = 1;
+        function mySlider(){
+            if(cnt>=3){
+                cnt=1;
+                $('.slide').animate({
+                    left:'+=2400px'
+                },0);
             }else{
-                for(let idx=0; idx<slideEls.length; idx++){
-                    let leftVal = slideEls.eq(idx).position().left;
-                    slideEls.eq(idx).css('left',leftVal-=1200);
-                }
-                nowSlide++;
-            }  
+                cnt++;
+                $('.slide').animate({
+                    left:'-=1200px'
+                },500);
+            }
         }
+        
+
+        // 공지사항&갤러리
+        $('.sub-tit').on('click',function(){
+            $('.art').removeClass('on');
+            $(this).parent('.art').addClass('on');
+        })
       
+        // 공지사항 내용변경
+        let noTit = $('.notice-content a');
+
+        noTit.css('text-align','left');
+        noTit.eq(0).load('notice.txt #title01');
+        noTit.eq(1).load('notice.txt #title02');
+        noTit.eq(2).load('notice.txt #title03');
+        noTit.eq(3).load('notice.txt #title04');
+        noTit.eq(4).load('notice.txt #title05');
+        
     </script>
 </body>
 </html>

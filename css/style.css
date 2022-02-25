@@ -37,6 +37,25 @@ address,i{
     display: block;
     clear: both;
 }
+
+.skip-nav{
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: -1000px;
+    z-index: 9999;
+    padding: 1em;
+    background-color: #222326;
+    font-size: 2em;
+    color: #fff;
+    text-align: center;
+}
+.skip-nav ul{
+    display: grid;
+    grid-template-columns: repeat(5,1fr);
+}
+
+
 /* .container{
     width: 100%;
     max-width: 1200px;
@@ -48,6 +67,8 @@ address,i{
     margin: 0 auto;
     display: grid;
     grid-template-columns: repeat(2,1fr);
+    column-gap: 2em;
+    
 }
 .doc-tit{
     display: none;
@@ -56,6 +77,10 @@ address,i{
 /* header */
 .header,.slider,.footer{
     grid-column: 1/3;
+}
+.header{
+    position: relative;
+    z-index: 1;
 }
 .header .container{
     border-bottom: 1px solid #222326;
@@ -68,15 +93,15 @@ address,i{
 
     height: 100px;
 }
-.header .sec-tit{
+.logo{
     padding: 0 1em;
     font-weight: 700;
     font-size: 2.5em;
 }
-.header .sec-tit span:nth-child(1){
+.logo span:nth-child(1){
     color: tomato;
 }
-.header .sec-tit span:nth-child(2){ 
+.logo span:nth-child(2){ 
     color: darkred;
 }
 .nav{
@@ -93,6 +118,7 @@ address,i{
     font-size: 1.5em;
     text-align: center;
     position: relative;
+    /* z-index: 100; */
 }
 .nav-level1>li:hover{
     border-bottom: 2px solid tomato;
@@ -118,11 +144,14 @@ address,i{
     padding: 0.3em 0.2em;
     background-color: tomato;
     color: #fff;
-    transform: scale(1.3);
+    /* transform: scale(1.3); */
 }
 
 
 /* slider */
+.slider{
+    margin-bottom: 2em;
+}
 .slider .sec-tit{
     display: none;
 }
@@ -137,7 +166,6 @@ address,i{
     /* top: 50%;
     transform: translateY(-50%); */
     width: 100%;
-    transition: 0.5s;
 }
 .slider .slide02{
     left: 100%;
@@ -193,27 +221,43 @@ address,i{
     left: 0;
     right: 0;
     top: 0;
+    padding-top: 60px;
+    z-index: 10;
 }
 .sub-tit{
     position: absolute;
     left: 0;
     top: 0;
     width: 50%;
-    padding: 0.6em;
+    padding: 1em;
+    border-bottom: 2px solid tomato;
     background-color: #eee;
     text-align: center;
     cursor: pointer;
 }
-.sub-tit.on{
+.art.on .sub-tit{
     background-color: tomato;
     color: #fff;
     cursor: pointer;
 }
+.notice-gallery .art.on{
+    z-index: 9;
+}
+.art.on .notice-list{
+    display: block;
+}
+.art.on .gallery-list{
+    display: flex;
+}
+.notice-list{
+    display: none;
+}
+.notice-list>li{
+    margin: 0.3em 0;
+}
 .notice-list ul{
     display: grid;
     grid-template-columns: 7fr 3fr 2fr;
-}
-.notice-list ul{
     text-align: center;
     font-weight: 600;
 }
@@ -229,10 +273,9 @@ address,i{
     text-overflow: ellipsis;
     overflow: hidden;
 }
-
-
 .gallery .sub-tit{
-    transform: translateX(100%);
+    left: auto;
+    right: 0%;
 }
 .gallery-list{
     /* display: grid; */
@@ -242,4 +285,107 @@ address,i{
 }
 .gallery-content{
     display: none;
+}
+
+/* banner */
+.banner{
+    margin-bottom: 4em;
+}
+.banner .sec-tit{
+    display: none;
+}
+.banner .row{
+    height: 250px;
+    overflow: hidden;
+    position: relative;
+}
+.banner-content{
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    padding: 2em;
+    
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-evenly;
+    
+}
+.banner-content .cont-tit{
+    font-weight: 700;
+    font-size: 3em;
+    color: #fff;
+    text-shadow: 0 0 1px #000;
+}
+.banner-content p{
+    font-size: 1.2em;
+    color: #fff;
+    text-shadow: 0 0 1px #000;
+}
+
+
+/* footer */
+.footer{
+    border-top: 1px solid darkred;
+    padding: 2em 0;
+}
+.footer .row{
+    display: grid;
+    grid-template-columns: 2fr 8fr 2fr;
+    align-items: center;
+    gap: 2em;
+}
+address{
+    text-align: center;
+}
+.sns-list ul{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 2em;
+}
+
+.modal-popup{
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    display: none;
+    background-color: rgba(138,0,0,0.5);
+    z-index: 5000;
+}
+.modal-popup .row{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    width: 600px;
+    border-radius: 0.5em;
+    padding: 2em;
+    background-color: #fff;
+}
+.modal-popup h2{
+    margin-bottom: 1em;
+    font-weight: 700;
+    font-size: 1.5em;
+    text-transform: capitalize;
+}
+.modal-content{
+    margin-bottom: 2em;
+}
+.modal-btn{
+    text-align: center;
+}
+.modal-btn button{
+    padding: 0.5em 1em;
+    border: 1px solid tomato;
+    background-color: #fff;
+    color: tomato;
+    cursor: pointer;
+}
+.modal-btn button:hover{
+    border: 1px solid tomato;
+    background-color: tomato;
+    color: #fff;
 }
